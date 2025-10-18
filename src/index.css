@@ -8,46 +8,46 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Tron-inspired neon color palette */
-    --background: 230 25% 4%;
-    --foreground: 190 100% 90%;
+    /* Tron: Ares red theme color palette */
+    --background: 0 25% 4%;
+    --foreground: 0 100% 90%;
 
-    --card: 230 20% 8%;
-    --card-foreground: 190 100% 90%;
+    --card: 0 20% 8%;
+    --card-foreground: 0 100% 90%;
 
-    --popover: 230 25% 6%;
-    --popover-foreground: 190 100% 90%;
+    --popover: 0 25% 6%;
+    --popover-foreground: 0 100% 90%;
 
-    --primary: 190 100% 50%;
-    --primary-foreground: 230 25% 4%;
+    --primary: 0 100% 50%;
+    --primary-foreground: 0 25% 4%;
 
-    --secondary: 220 100% 50%;
-    --secondary-foreground: 190 100% 90%;
+    --secondary: 20 100% 50%;
+    --secondary-foreground: 0 100% 90%;
 
-    --muted: 230 15% 15%;
-    --muted-foreground: 190 40% 60%;
+    --muted: 0 15% 15%;
+    --muted-foreground: 0 40% 60%;
 
-    --accent: 290 100% 50%;
-    --accent-foreground: 190 100% 90%;
+    --accent: 30 100% 50%;
+    --accent-foreground: 0 100% 90%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 190 100% 90%;
+    --destructive: 340 84% 60%;
+    --destructive-foreground: 0 100% 90%;
 
-    --border: 190 60% 20%;
-    --input: 230 20% 12%;
-    --ring: 190 100% 50%;
+    --border: 0 60% 20%;
+    --input: 0 20% 12%;
+    --ring: 0 100% 50%;
 
     --radius: 0.75rem;
 
-    /* Neon glow colors */
-    --neon-cyan: 190 100% 50%;
-    --neon-blue: 220 100% 50%;
-    --neon-magenta: 290 100% 50%;
-    --neon-purple: 270 100% 60%;
+    /* Neon glow colors - Ares red theme */
+    --neon-cyan: 0 100% 50%;
+    --neon-blue: 20 100% 50%;
+    --neon-magenta: 340 100% 50%;
+    --neon-purple: 330 100% 60%;
     
     /* Grid and line colors */
-    --grid-line: 190 80% 30%;
-    --glow-strong: 190 100% 70%;
+    --grid-line: 0 80% 30%;
+    --glow-strong: 0 100% 70%;
   }
 }
 
