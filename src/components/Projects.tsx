@@ -60,17 +60,6 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-20 relative overflow-hidden">
-      {/* Animated grid background */}
-      <div className="absolute inset-0 opacity-10 animate-grid-flow">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(hsl(var(--grid-line)) 1px, transparent 1px),
-            linear-gradient(90deg, hsl(var(--grid-line)) 1px, transparent 1px)
-          `,
-          backgroundSize: "40px 40px",
-        }} />
-      </div>
-
       <div className="container mx-auto px-4 relative z-10" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -88,7 +77,7 @@ const Projects = () => {
           {loading ? (
             <div className="text-center text-foreground/60 font-rajdhani text-xl">Loading projects...</div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
               {repos.map((repo, index) => (
                 <motion.div
                   key={repo.id}

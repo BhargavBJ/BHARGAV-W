@@ -1,67 +1,108 @@
 import { useEffect, useState } from "react";
 
-interface TrailPoint {
+interface MousePosition {
+  x: number;
+  y: number;
+}
+
+interface ClickAnimation {
   x: number;
   y: number;
   id: number;
 }
 
 const MouseTrail = () => {
-  const [trail, setTrail] = useState<TrailPoint[]>([]);
+  const [mousePos, setMousePos] = useState<MousePosition>({ x: 0, y: 0 });
+  const [clickAnimations, setClickAnimations] = useState<ClickAnimation[]>([]);
 
   useEffect(() => {
-    let mouseId = 0;
+    let animId = 0;
 
     const handleMouseMove = (e: MouseEvent) => {
-      const newPoint = {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+
+    const handleClick = (e: MouseEvent) => {
+      const newAnim = {
         x: e.clientX,
         y: e.clientY,
-        id: mouseId++,
+        id: animId++,
       };
-
-      setTrail((prevTrail) => {
-        const newTrail = [...prevTrail, newPoint];
-        // Keep only the last 20 points
-        return newTrail.slice(-20);
-      });
+      
+      setClickAnimations((prev) => [...prev, newAnim]);
+      
+      // Remove animation after it completes
+      setTimeout(() => {
+        setClickAnimations((prev) => prev.filter((anim) => anim.id !== newAnim.id));
+      }, 1000);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-
-    // Cleanup trail points
-    const interval = setInterval(() => {
-      setTrail((prevTrail) => prevTrail.slice(1));
-    }, 50);
+    window.addEventListener("click", handleClick);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      clearInterval(interval);
+      window.removeEventListener("click", handleClick);
     };
   }, []);
 
   return (
     <div className="fixed inset-0 pointer-events-none z-50">
-      {trail.map((point, index) => {
-        const opacity = (index / trail.length) * 0.6;
-        const size = (index / trail.length) * 12 + 4;
-        
-        return (
+      {/* Fluid cursor follower */}
+      <div
+        className="absolute rounded-full bg-primary/40 blur-sm"
+        style={{
+          left: mousePos.x,
+          top: mousePos.y,
+          width: "20px",
+          height: "20px",
+          transform: "translate(-50%, -50%)",
+          boxShadow: "0 0 30px hsl(var(--primary))",
+          transition: "all 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
+      />
+      
+      {/* Click animations */}
+      {clickAnimations.map((anim) => (
+        <div key={anim.id}>
+          {/* Horizontal line */}
           <div
-            key={point.id}
-            className="absolute rounded-full bg-primary"
+            className="absolute bg-primary/60 animate-pulse"
             style={{
-              left: point.x,
-              top: point.y,
-              width: `${size}px`,
-              height: `${size}px`,
+              left: anim.x,
+              top: anim.y,
+              width: "2px",
+              height: "0px",
               transform: "translate(-50%, -50%)",
-              opacity: opacity,
-              boxShadow: `0 0 ${size * 2}px hsl(var(--primary))`,
-              transition: "all 0.1s ease-out",
+              animation: "expandLine 1s ease-out forwards",
             }}
           />
-        );
-      })}
+          {/* Start point */}
+          <div
+            className="absolute rounded-full bg-primary"
+            style={{
+              left: anim.x,
+              top: anim.y,
+              width: "8px",
+              height: "8px",
+              transform: "translate(-50%, -50%)",
+              boxShadow: "0 0 20px hsl(var(--primary))",
+              animation: "fadeOut 1s ease-out forwards",
+            }}
+          />
+        </div>
+      ))}
+      
+      <style>{`
+        @keyframes expandLine {
+          0% { height: 0px; }
+          100% { height: 200px; opacity: 0; }
+        }
+        @keyframes fadeOut {
+          0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+          100% { opacity: 0; transform: translate(-50%, -50%) scale(2); }
+        }
+      `}</style>
     </div>
   );
 };
