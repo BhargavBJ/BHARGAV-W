@@ -1,38 +1,28 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Code2, Palette, Database, Cloud, Smartphone, Cpu } from "lucide-react";
+import { Brain, Database, Code2, Workflow } from "lucide-react";
 
 const skills = [
   {
+    icon: Brain,
+    name: "AI/ML Frameworks",
+    technologies: ["TensorFlow", "PyTorch", "Keras", "Scikit-learn", "OpenCV", "Hugging Face"]
+  },
+  {
     icon: Code2,
-    name: "Frontend Development",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Next.js"]
+    name: "ML Libraries",
+    technologies: ["NumPy", "Pandas", "Matplotlib", "Seaborn", "NLTK", "SpaCy"]
   },
   {
     icon: Database,
-    name: "Backend & Database",
-    technologies: ["Node.js", "PostgreSQL", "MongoDB", "REST APIs"]
+    name: "Databases",
+    technologies: ["PostgreSQL", "MongoDB", "MySQL", "Vector DB", "Redis"]
   },
   {
-    icon: Palette,
-    name: "UI/UX Design",
-    technologies: ["Figma", "Adobe XD", "Responsive Design", "Animation"]
-  },
-  {
-    icon: Cloud,
-    name: "Cloud & DevOps",
-    technologies: ["AWS", "Docker", "CI/CD", "Vercel"]
-  },
-  {
-    icon: Smartphone,
-    name: "Mobile Development",
-    technologies: ["React Native", "Progressive Web Apps", "Responsive Design"]
-  },
-  {
-    icon: Cpu,
-    name: "Tools & Technologies",
-    technologies: ["Git", "VS Code", "Linux", "Agile"]
+    icon: Workflow,
+    name: "APIs & Tools",
+    technologies: ["REST APIs", "FastAPI", "Flask", "GraphQL", "MLflow", "Jupyter"]
   }
 ];
 
@@ -67,7 +57,7 @@ const Skills = () => {
             </span>
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {skills.map((skill, index) => {
               const Icon = skill.icon;
               return (

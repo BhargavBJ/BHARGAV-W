@@ -9,6 +9,7 @@ interface ClickAnimation {
   x: number;
   y: number;
   id: number;
+  angle: number;
 }
 
 const MouseTrail = () => {
@@ -23,10 +24,15 @@ const MouseTrail = () => {
     };
 
     const handleClick = (e: MouseEvent) => {
+      // Random angles: 0 (horizontal), 90 (vertical), 45, 135
+      const angles = [0, 90, 45, 135];
+      const randomAngle = angles[Math.floor(Math.random() * angles.length)];
+      
       const newAnim = {
         x: e.clientX,
         y: e.clientY,
         id: animId++,
+        angle: randomAngle,
       };
       
       setClickAnimations((prev) => [...prev, newAnim]);
@@ -65,16 +71,17 @@ const MouseTrail = () => {
       {/* Click animations */}
       {clickAnimations.map((anim) => (
         <div key={anim.id}>
-          {/* Horizontal line */}
+          {/* Animated line */}
           <div
-            className="absolute bg-primary/60 animate-pulse"
+            className="absolute bg-primary/60"
             style={{
               left: anim.x,
               top: anim.y,
-              width: "2px",
-              height: "0px",
-              transform: "translate(-50%, -50%)",
-              animation: "expandLine 1s ease-out forwards",
+              width: anim.angle === 90 ? "2px" : "0px",
+              height: anim.angle === 90 ? "0px" : "2px",
+              transform: `translate(-50%, -50%) rotate(${anim.angle}deg)`,
+              transformOrigin: "center",
+              animation: anim.angle === 90 ? "expandVertical 1s ease-out forwards" : "expandHorizontal 1s ease-out forwards",
             }}
           />
           {/* Start point */}
@@ -94,9 +101,13 @@ const MouseTrail = () => {
       ))}
       
       <style>{`
-        @keyframes expandLine {
+        @keyframes expandVertical {
           0% { height: 0px; }
-          100% { height: 200px; opacity: 0; }
+          100% { height: 300px; opacity: 0; }
+        }
+        @keyframes expandHorizontal {
+          0% { width: 0px; }
+          100% { width: 300px; opacity: 0; }
         }
         @keyframes fadeOut {
           0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
