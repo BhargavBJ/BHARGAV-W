@@ -97,7 +97,7 @@ const Hero = () => {
               </div>
             </a>
             <a 
-              href="https://www.linkedin.com/in/bhargav-bj/" 
+              href="https://www.linkedin.com/in/bhargav-b-j-01ab36285/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group"
@@ -107,7 +107,7 @@ const Hero = () => {
               </div>
             </a>
             <a 
-              href="mailto:bhargav@example.com"
+              href="mailto:bjbhargav60@gmail.com"
               className="group"
             >
               <div className="p-4 border-2 border-primary rounded-lg transition-all duration-300 hover:shadow-neon-strong">
