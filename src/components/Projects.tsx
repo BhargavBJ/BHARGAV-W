@@ -24,9 +24,30 @@ const Projects = () => {
   useEffect(() => {
     const fetchRepos = async () => {
       try {
-        const response = await fetch('https://api.github.com/users/BhargavBJ/repos?sort=updated&per_page=6');
+        const response = await fetch('https://api.github.com/users/BhargavBJ/repos?sort=updated&per_page=100');
         const data = await response.json();
-        setRepos(data);
+        
+        // Filter out Test and BhargavBJ repos, focus on ML projects
+        const mlKeywords = ['ml', 'machine-learning', 'deep-learning', 'ai', 'neural', 'model', 'data-science', 'tensorflow', 'pytorch', 'keras', 'scikit'];
+        const filteredRepos = data
+          .filter((repo: Repository) => {
+            const repoName = repo.name.toLowerCase();
+            const repoDesc = (repo.description || '').toLowerCase();
+            const repoTopics = repo.topics.map(t => t.toLowerCase());
+            
+            // Exclude specific repos
+            if (repoName === 'test' || repoName === 'bhargavbj') return false;
+            
+            // Check if it's ML-related
+            return mlKeywords.some(keyword => 
+              repoName.includes(keyword) || 
+              repoDesc.includes(keyword) ||
+              repoTopics.some(topic => topic.includes(keyword))
+            );
+          })
+          .slice(0, 4); // Only show 4 projects
+        
+        setRepos(filteredRepos);
       } catch (error) {
         console.error('Error fetching repos:', error);
       } finally {

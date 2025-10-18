@@ -4,10 +4,12 @@ import About from "@/components/About";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
+import MouseTrail from "@/components/MouseTrail";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <MouseTrail />
       <Navbar />
       <Hero />
       <About />

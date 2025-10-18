@@ -65,7 +65,7 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            Developer & Designer
+            💻AI & ML Enthusiast • 🚀 Project Builder • 🧠 Deep Learning Explorer • 🔬 ML Researcher
           </motion.p>
 
           {/* Neon divider line */}
