@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Github, Mail, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroAresRed from "@/assets/hero-ares-red.jpg";
+import tronAresRed from "@/assets/tron-ares-red.jpg";
 
 const Hero = () => {
   return (
@@ -10,7 +10,7 @@ const Hero = () => {
       <div 
         className="absolute inset-0 opacity-30"
         style={{
-          backgroundImage: `url(${heroAresRed})`,
+          backgroundImage: `url(${tronAresRed})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
