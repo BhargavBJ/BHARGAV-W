@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Github, Mail, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroGrid from "@/assets/hero-grid.jpg";
+import heroAresRed from "@/assets/hero-ares-red.jpg";
 
 const Hero = () => {
   return (
@@ -10,7 +10,7 @@ const Hero = () => {
       <div 
         className="absolute inset-0 opacity-30"
         style={{
-          backgroundImage: `url(${heroGrid})`,
+          backgroundImage: `url(${heroAresRed})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -65,7 +65,7 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            💻AI & ML Enthusiast • 🚀 Project Builder • 🧠 Deep Learning Explorer • 🔬 ML Researcher
+            AI & ML Enthusiast • Project Builder • Deep Learning Explorer • ML Researcher
           </motion.p>
 
           {/* Neon divider line */}
