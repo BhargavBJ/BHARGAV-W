@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 interface MousePosition {
   x: number;
   y: number;
+}
+
+interface TrailPoint extends MousePosition {
+  id: number;
 }
 
 interface ClickAnimation {
@@ -14,13 +18,25 @@ interface ClickAnimation {
 
 const MouseTrail = () => {
   const [mousePos, setMousePos] = useState<MousePosition>({ x: 0, y: 0 });
+  const [trailPoints, setTrailPoints] = useState<TrailPoint[]>([]);
   const [clickAnimations, setClickAnimations] = useState<ClickAnimation[]>([]);
+  const rafRef = useRef<number>();
+  const lastPosRef = useRef<MousePosition>({ x: 0, y: 0 });
 
   useEffect(() => {
     let animId = 0;
+    let trailId = 0;
 
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      lastPosRef.current = { x: e.clientX, y: e.clientY };
+      
+      // Add trail point
+      setTrailPoints((prev) => {
+        const newPoint = { x: e.clientX, y: e.clientY, id: trailId++ };
+        const updated = [...prev, newPoint];
+        // Keep only last 8 points
+        return updated.slice(-8);
+      });
     };
 
     const handleClick = (e: MouseEvent) => {
@@ -43,28 +59,59 @@ const MouseTrail = () => {
       }, 1000);
     };
 
+    const animate = () => {
+      setMousePos(lastPosRef.current);
+      rafRef.current = requestAnimationFrame(animate);
+    };
+
+    rafRef.current = requestAnimationFrame(animate);
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("click", handleClick);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("click", handleClick);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
     };
   }, []);
 
   return (
     <div className="fixed inset-0 pointer-events-none z-50">
-      {/* Fluid cursor follower */}
+      {/* Trail effect with multiple points */}
+      {trailPoints.map((point, index) => {
+        const opacity = (index + 1) / trailPoints.length;
+        const scale = 0.3 + (opacity * 0.7);
+        
+        return (
+          <div
+            key={point.id}
+            className="absolute rounded-full bg-primary blur-sm"
+            style={{
+              left: point.x,
+              top: point.y,
+              width: "20px",
+              height: "20px",
+              transform: `translate(-50%, -50%) scale(${scale})`,
+              opacity: opacity * 0.5,
+              boxShadow: `0 0 ${20 + opacity * 20}px hsl(var(--primary))`,
+              transition: "opacity 0.3s ease-out",
+            }}
+          />
+        );
+      })}
+      
+      {/* Main cursor glow */}
       <div
-        className="absolute rounded-full bg-primary/40 blur-sm"
+        className="absolute rounded-full bg-primary/50 blur-md"
         style={{
           left: mousePos.x,
           top: mousePos.y,
-          width: "20px",
-          height: "20px",
+          width: "30px",
+          height: "30px",
           transform: "translate(-50%, -50%)",
-          boxShadow: "0 0 30px hsl(var(--primary))",
-          transition: "all 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+          boxShadow: "0 0 40px hsl(var(--primary))",
         }}
       />
       
