@@ -42,27 +42,17 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          {/* Name with Tron effect - black text with red outline and glow */}
+          {/* Name with sleek Tron effect - black text with crisp red outline */}
           <motion.h1 
             className="font-orbitron font-black text-6xl md:text-8xl lg:text-9xl mb-6 tracking-wider"
             style={{
               color: "hsl(var(--background))",
               WebkitTextStroke: "2px hsl(var(--primary))",
-              textShadow: `
-                0 0 20px hsl(var(--primary)),
-                0 0 40px hsl(var(--primary)),
-                0 0 60px hsl(var(--primary)),
-                0 0 80px hsl(var(--primary))
-              `
+              filter: "drop-shadow(0 2px 0 hsl(var(--primary)))"
             }}
-            animate={{
-              textShadow: [
-                `0 0 20px hsl(var(--primary)), 0 0 40px hsl(var(--primary)), 0 0 60px hsl(var(--primary))`,
-                `0 0 30px hsl(var(--primary)), 0 0 60px hsl(var(--primary)), 0 0 100px hsl(var(--primary))`,
-                `0 0 20px hsl(var(--primary)), 0 0 40px hsl(var(--primary)), 0 0 60px hsl(var(--primary))`,
-              ]
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
             BHARGAV B J
           </motion.h1>
@@ -76,18 +66,15 @@ const Hero = () => {
             AI & ML Enthusiast • Project Builder • Deep Learning Explorer • ML Researcher
           </motion.p>
 
-          {/* Neon divider line */}
+          {/* Sleek divider line */}
           <motion.div 
             className="w-64 h-0.5 mx-auto mb-12 bg-primary"
-            style={{
-              boxShadow: "0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary))"
-            }}
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           />
 
-          {/* Social links with neon effect */}
+          {/* Social links with sleek borders */}
           <motion.div 
             className="flex gap-6 justify-center mb-12"
             initial={{ opacity: 0, y: 20 }}
@@ -100,7 +87,7 @@ const Hero = () => {
               rel="noopener noreferrer"
               className="group"
             >
-              <div className="p-4 border-2 border-primary rounded-lg transition-all duration-300 hover:shadow-neon-strong">
+              <div className="p-4 border-2 border-primary rounded-lg transition-all duration-300 hover:bg-primary/10">
                 <Github className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
               </div>
             </a>
@@ -110,7 +97,7 @@ const Hero = () => {
               rel="noopener noreferrer"
               className="group"
             >
-              <div className="p-4 border-2 border-primary rounded-lg transition-all duration-300 hover:shadow-neon-strong">
+              <div className="p-4 border-2 border-primary rounded-lg transition-all duration-300 hover:bg-primary/10">
                 <Linkedin className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
               </div>
             </a>
@@ -118,7 +105,7 @@ const Hero = () => {
               href="mailto:bjbhargav60@gmail.com"
               className="group"
             >
-              <div className="p-4 border-2 border-primary rounded-lg transition-all duration-300 hover:shadow-neon-strong">
+              <div className="p-4 border-2 border-primary rounded-lg transition-all duration-300 hover:bg-primary/10">
                 <Mail className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
               </div>
             </a>
@@ -132,7 +119,7 @@ const Hero = () => {
           >
             <Button 
               size="lg"
-              className="font-rajdhani text-lg px-8 py-6 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 shadow-neon hover:shadow-neon-strong"
+              className="font-rajdhani text-lg px-8 py-6 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
               onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
             >
               VIEW PROJECTS
