@@ -21,9 +21,7 @@ const Index = () => {
       <footer className="py-8 border-t border-primary/30">
         <div className="container mx-auto px-4 text-center">
           <p className="font-rajdhani text-foreground/60">
-            © 2025 Bhargav B J. Designed with{" "}
-            <span className="text-primary">neon</span> and{" "}
-            <span className="text-primary">code</span>.
+            © 2025 Bhargav B J.
           </p>
         </div>
       </footer>

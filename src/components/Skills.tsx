@@ -49,12 +49,15 @@ const Skills = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-orbitron text-4xl md:text-6xl font-bold text-center mb-16 text-primary">
-            <span className="inline-block" style={{
-              textShadow: "0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary))"
-            }}>
-              SKILLS
-            </span>
+          <h2 
+            className="font-orbitron text-4xl md:text-6xl font-bold text-center mb-16"
+            style={{
+              color: "hsl(var(--background))",
+              WebkitTextStroke: "2px hsl(var(--primary))",
+              filter: "drop-shadow(0 2px 0 hsl(var(--primary)))"
+            }}
+          >
+            SKILLS
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
@@ -63,21 +66,25 @@ const Skills = () => {
               return (
                 <motion.div
                   key={skill.name}
-                  className="group relative bg-card/50 backdrop-blur-sm border-2 border-primary/30 rounded-lg p-6 transition-all duration-300 hover:border-primary hover:shadow-neon"
+                  className="group bg-card/50 backdrop-blur-sm border-2 border-primary/30 rounded-lg p-6 transition-all duration-300 hover:border-primary"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  {/* Hover glow */}
-                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg" />
-                  
-                  <div className="relative z-10">
+                  <div>
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="p-3 border-2 border-primary rounded-lg group-hover:shadow-neon transition-all duration-300">
-                        <Icon className="w-8 h-8 text-primary group-hover:animate-glow-pulse" />
+                      <div className="p-3 border-2 border-primary rounded-lg transition-all duration-300">
+                        <Icon className="w-8 h-8 text-primary" />
                       </div>
-                      <h3 className="font-orbitron text-lg font-bold text-primary">
+                      <h3 
+                        className="font-orbitron text-lg font-bold"
+                        style={{
+                          color: "hsl(var(--background))",
+                          WebkitTextStroke: "1px hsl(var(--primary))",
+                          filter: "drop-shadow(0 1px 0 hsl(var(--primary)))"
+                        }}
+                      >
                         {skill.name}
                       </h3>
                     </div>

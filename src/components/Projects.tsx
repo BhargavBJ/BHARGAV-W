@@ -66,12 +66,15 @@ const Projects = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-orbitron text-4xl md:text-6xl font-bold text-center mb-16 text-primary">
-            <span className="inline-block" style={{
-              textShadow: "0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary))"
-            }}>
-              PROJECTS
-            </span>
+          <h2 
+            className="font-orbitron text-4xl md:text-6xl font-bold text-center mb-16"
+            style={{
+              color: "hsl(var(--background))",
+              WebkitTextStroke: "2px hsl(var(--primary))",
+              filter: "drop-shadow(0 2px 0 hsl(var(--primary)))"
+            }}
+          >
+            PROJECTS
           </h2>
 
           {loading ? (
@@ -81,18 +84,22 @@ const Projects = () => {
               {repos.map((repo, index) => (
                 <motion.div
                   key={repo.id}
-                  className="group relative bg-card/50 backdrop-blur-sm border-2 border-primary/30 rounded-lg p-6 transition-all duration-300 hover:border-primary hover:shadow-neon"
+                  className="group relative bg-card/50 backdrop-blur-sm border-2 border-primary/30 rounded-lg p-6 transition-all duration-300 hover:border-primary"
                   initial={{ opacity: 0, y: 50 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ y: -5 }}
                 >
-                  {/* Hover glow effect */}
-                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg" />
-                  
-                  <div className="relative z-10">
+                  <div>
                     <div className="flex items-start justify-between mb-4">
-                      <h3 className="font-orbitron text-xl font-bold text-primary group-hover:text-neon-cyan transition-colors">
+                      <h3 
+                        className="font-orbitron text-xl font-bold"
+                        style={{
+                          color: "hsl(var(--background))",
+                          WebkitTextStroke: "1px hsl(var(--primary))",
+                          filter: "drop-shadow(0 1px 0 hsl(var(--primary)))"
+                        }}
+                      >
                         {repo.name}
                       </h3>
                       {repo.language && (

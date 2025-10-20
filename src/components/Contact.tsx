@@ -52,18 +52,21 @@ const Contact = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-orbitron text-4xl md:text-6xl font-bold text-center mb-16 text-primary">
-            <span className="inline-block" style={{
-              textShadow: "0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary))"
-            }}>
-              CONTACT
-            </span>
+          <h2 
+            className="font-orbitron text-4xl md:text-6xl font-bold text-center mb-16"
+            style={{
+              color: "hsl(var(--background))",
+              WebkitTextStroke: "2px hsl(var(--primary))",
+              filter: "drop-shadow(0 2px 0 hsl(var(--primary)))"
+            }}
+          >
+            CONTACT
           </h2>
 
           <div className="max-w-2xl mx-auto">
             <motion.form
               onSubmit={handleSubmit}
-              className="bg-card/50 backdrop-blur-sm border-2 border-primary/30 rounded-lg p-8 md:p-12 hover:border-primary hover:shadow-neon transition-all duration-300"
+              className="group bg-card/50 backdrop-blur-sm border-2 border-primary/30 rounded-lg p-8 md:p-12 hover:border-primary transition-all duration-300"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -76,7 +79,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="bg-input border-2 border-primary/30 focus:border-primary focus:shadow-neon transition-all duration-300 font-rajdhani text-foreground"
+                    className="bg-input border-2 border-primary/30 focus:border-primary transition-all duration-300 font-rajdhani text-foreground"
                     placeholder="Your name"
                   />
                 </div>
@@ -89,7 +92,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="bg-input border-2 border-primary/30 focus:border-primary focus:shadow-neon transition-all duration-300 font-rajdhani text-foreground"
+                    className="bg-input border-2 border-primary/30 focus:border-primary transition-all duration-300 font-rajdhani text-foreground"
                     placeholder="your.email@example.com"
                   />
                 </div>
@@ -102,14 +105,14 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="bg-input border-2 border-primary/30 focus:border-primary focus:shadow-neon transition-all duration-300 font-rajdhani text-foreground resize-none"
+                    className="bg-input border-2 border-primary/30 focus:border-primary transition-all duration-300 font-rajdhani text-foreground resize-none"
                     placeholder="Your message..."
                   />
                 </div>
 
                 <Button
                   type="submit"
-                  className="w-full font-rajdhani text-lg py-6 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 shadow-neon hover:shadow-neon-strong"
+                  className="w-full font-rajdhani text-lg py-6 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                 >
                   <Send className="w-5 h-5 mr-2" />
                   SEND MESSAGE

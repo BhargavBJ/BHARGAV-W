@@ -25,20 +25,20 @@ const About = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-orbitron text-4xl md:text-6xl font-bold text-center mb-16 text-primary">
-            <span className="inline-block" style={{
-              textShadow: "0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary))"
-            }}>
-              ABOUT
-            </span>
+          <h2 
+            className="font-orbitron text-4xl md:text-6xl font-bold text-center mb-16"
+            style={{
+              color: "hsl(var(--background))",
+              WebkitTextStroke: "2px hsl(var(--primary))",
+              filter: "drop-shadow(0 2px 0 hsl(var(--primary)))"
+            }}
+          >
+            ABOUT
           </h2>
 
           <div className="max-w-4xl mx-auto">
             <motion.div
-              className="bg-card/50 backdrop-blur-sm border border-primary/30 rounded-lg p-8 md:p-12"
-              style={{
-                boxShadow: "0 0 20px hsl(var(--primary) / 0.2)"
-              }}
+              className="group bg-card/50 backdrop-blur-sm border-2 border-primary/30 rounded-lg p-8 md:p-12 transition-all duration-300 hover:border-primary"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}

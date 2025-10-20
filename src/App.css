@@ -1,8 +1,16 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Smooth scroll fade effect */
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  opacity: 1;
+  transition: opacity 0.6s ease-in-out;
 }
 
 .logo {
