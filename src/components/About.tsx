@@ -4,7 +4,7 @@ import { useRef } from "react";
 
 const About = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: false, margin: "-20%" });
 
   return (
     <section id="about" className="py-20 relative overflow-hidden">
@@ -21,9 +21,9 @@ const About = () => {
 
       <div className="container mx-auto px-4 relative z-10" ref={ref}>
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
         >
           <h2 
             className="font-orbitron text-4xl md:text-6xl font-bold text-center mb-16"
@@ -40,8 +40,8 @@ const About = () => {
             <motion.div
               className="group bg-card/50 backdrop-blur-sm border-2 border-primary/30 rounded-lg p-8 md:p-12 transition-all duration-300 hover:border-primary"
               initial={{ opacity: 0, scale: 0.95 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeInOut" }}
             >
               <p className="font-rajdhani text-lg md:text-xl text-foreground/90 leading-relaxed mb-6">
                 I'm a passionate developer and designer with expertise in creating cutting-edge web applications. 

@@ -3,14 +3,19 @@
   overflow-x: hidden;
 }
 
-/* Smooth scroll fade effect */
+/* Smooth cinematic scroll */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
+body {
+  overflow-x: hidden;
+}
+
+/* Optimize scroll performance */
 section {
-  opacity: 1;
-  transition: opacity 0.6s ease-in-out;
+  will-change: opacity, transform;
 }
 
 .logo {
