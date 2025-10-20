@@ -2,8 +2,15 @@ import { motion } from "framer-motion";
 import { Github, Mail, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import tronAresRed from "@/assets/tron-ares-red.jpg";
+import { useEffect } from "react";
 
 const Hero = () => {
+  useEffect(() => {
+    const audio = new Audio('/tron-startup.mp3');
+    audio.volume = 0.3;
+    audio.play().catch(err => console.log('Audio autoplay prevented:', err));
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated background grid */}
@@ -35,23 +42,24 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          {/* Name with neon glow */}
+          {/* Name with Tron effect - black text with red outline and glow */}
           <motion.h1 
             className="font-orbitron font-black text-6xl md:text-8xl lg:text-9xl mb-6 tracking-wider"
             style={{
-              color: "hsl(var(--primary))",
+              color: "hsl(var(--background))",
+              WebkitTextStroke: "2px hsl(var(--primary))",
               textShadow: `
-                0 0 10px hsl(var(--primary)),
                 0 0 20px hsl(var(--primary)),
                 0 0 40px hsl(var(--primary)),
+                0 0 60px hsl(var(--primary)),
                 0 0 80px hsl(var(--primary))
               `
             }}
             animate={{
               textShadow: [
-                `0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary)), 0 0 40px hsl(var(--primary))`,
-                `0 0 20px hsl(var(--primary)), 0 0 40px hsl(var(--primary)), 0 0 80px hsl(var(--primary))`,
-                `0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary)), 0 0 40px hsl(var(--primary))`,
+                `0 0 20px hsl(var(--primary)), 0 0 40px hsl(var(--primary)), 0 0 60px hsl(var(--primary))`,
+                `0 0 30px hsl(var(--primary)), 0 0 60px hsl(var(--primary)), 0 0 100px hsl(var(--primary))`,
+                `0 0 20px hsl(var(--primary)), 0 0 40px hsl(var(--primary)), 0 0 60px hsl(var(--primary))`,
               ]
             }}
             transition={{ duration: 2, repeat: Infinity }}
