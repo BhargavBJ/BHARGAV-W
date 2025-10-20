@@ -77,14 +77,7 @@ const Skills = () => {
                       <div className="p-3 border-2 border-primary rounded-lg transition-all duration-300">
                         <Icon className="w-8 h-8 text-primary" />
                       </div>
-                      <h3 
-                        className="font-orbitron text-lg font-bold"
-                        style={{
-                          color: "hsl(var(--background))",
-                          WebkitTextStroke: "1px hsl(var(--primary))",
-                          filter: "drop-shadow(0 1px 0 hsl(var(--primary)))"
-                        }}
-                      >
+                      <h3 className="font-orbitron text-lg font-bold text-primary">
                         {skill.name}
                       </h3>
                     </div>

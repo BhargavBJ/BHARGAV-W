@@ -92,14 +92,7 @@ const Projects = () => {
                 >
                   <div>
                     <div className="flex items-start justify-between mb-4">
-                      <h3 
-                        className="font-orbitron text-xl font-bold"
-                        style={{
-                          color: "hsl(var(--background))",
-                          WebkitTextStroke: "1px hsl(var(--primary))",
-                          filter: "drop-shadow(0 1px 0 hsl(var(--primary)))"
-                        }}
-                      >
+                      <h3 className="font-orbitron text-xl font-bold text-primary">
                         {repo.name}
                       </h3>
                       {repo.language && (
