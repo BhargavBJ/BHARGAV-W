@@ -22,6 +22,7 @@ const MouseTrail = () => {
   const [clickAnimations, setClickAnimations] = useState<ClickAnimation[]>([]);
   const rafRef = useRef<number>();
   const lastPosRef = useRef<MousePosition>({ x: 0, y: 0 });
+  const lastMoveTimeRef = useRef<number>(Date.now());
 
   useEffect(() => {
     let animId = 0;
@@ -29,13 +30,14 @@ const MouseTrail = () => {
 
     const handleMouseMove = (e: MouseEvent) => {
       lastPosRef.current = { x: e.clientX, y: e.clientY };
+      lastMoveTimeRef.current = Date.now();
       
       // Add trail point
       setTrailPoints((prev) => {
         const newPoint = { x: e.clientX, y: e.clientY, id: trailId++ };
         const updated = [...prev, newPoint];
-        // Keep only last 8 points
-        return updated.slice(-8);
+        // Keep only last 6 points for liquid effect
+        return updated.slice(-6);
       });
     };
 
@@ -61,6 +63,13 @@ const MouseTrail = () => {
 
     const animate = () => {
       setMousePos(lastPosRef.current);
+      
+      // Clear trail if mouse hasn't moved in 100ms
+      const now = Date.now();
+      if (now - lastMoveTimeRef.current > 100) {
+        setTrailPoints([]);
+      }
+      
       rafRef.current = requestAnimationFrame(animate);
     };
 
@@ -97,25 +106,25 @@ const MouseTrail = () => {
         }
       `}</style>
       <div className="fixed inset-0 pointer-events-none z-50">
-        {/* White smoke trail effect */}
+        {/* Liquid trail effect */}
         {trailPoints.map((point, index) => {
           const opacity = (index + 1) / trailPoints.length;
-          const scale = 0.3 + (1 - opacity) * 1.2;
-          const blur = 8 + (1 - opacity) * 20;
+          const scale = 0.5 + (opacity * 0.5);
+          const width = 16 - (index * 2);
           
           return (
             <div
               key={point.id}
-              className="absolute rounded-full bg-white"
+              className="absolute rounded-full bg-white/60"
               style={{
                 left: point.x,
                 top: point.y,
-                width: `${20 + Math.random() * 15}px`,
-                height: `${20 + Math.random() * 15}px`,
+                width: `${width}px`,
+                height: `${width}px`,
                 transform: `translate(-50%, -50%) scale(${scale})`,
-                opacity: opacity * 0.25,
-                filter: `blur(${blur}px)`,
-                transition: "opacity 0.5s ease-out, transform 0.5s ease-out",
+                opacity: opacity * 0.4,
+                filter: `blur(${2 + (1 - opacity) * 6}px)`,
+                transition: "opacity 0.2s ease-out, transform 0.2s ease-out",
               }}
             />
           );
