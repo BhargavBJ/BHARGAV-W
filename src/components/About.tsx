@@ -4,7 +4,7 @@ import { useRef } from "react";
 
 const About = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-20%" });
+  const isInView = useInView(ref, { once: true, margin: "-20%" });
 
   return (
     <section id="about" className="py-20 relative overflow-hidden">
@@ -22,7 +22,7 @@ const About = () => {
       <div className="container mx-auto px-4 relative z-10" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: "easeInOut" }}
         >
           <h2 

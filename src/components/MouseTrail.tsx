@@ -78,42 +78,61 @@ const MouseTrail = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-50">
-      {/* Trail effect with multiple points */}
-      {trailPoints.map((point, index) => {
-        const opacity = (index + 1) / trailPoints.length;
-        const scale = 0.3 + (opacity * 0.7);
+    <>
+      <style>{`
+        * {
+          cursor: none !important;
+        }
+        @keyframes expandVertical {
+          0% { height: 0px; }
+          100% { height: 300px; opacity: 0; }
+        }
+        @keyframes expandHorizontal {
+          0% { width: 0px; }
+          100% { width: 300px; opacity: 0; }
+        }
+        @keyframes fadeOut {
+          0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+          100% { opacity: 0; transform: translate(-50%, -50%) scale(2); }
+        }
+      `}</style>
+      <div className="fixed inset-0 pointer-events-none z-50">
+        {/* Smoke trail effect */}
+        {trailPoints.map((point, index) => {
+          const opacity = (index + 1) / trailPoints.length;
+          const scale = 0.2 + (opacity * 0.4);
+          const blur = 15 + (1 - opacity) * 10;
+          
+          return (
+            <div
+              key={point.id}
+              className="absolute rounded-full bg-black/40"
+              style={{
+                left: point.x,
+                top: point.y,
+                width: `${15 + Math.random() * 10}px`,
+                height: `${15 + Math.random() * 10}px`,
+                transform: `translate(-50%, -50%) scale(${scale})`,
+                opacity: opacity * 0.3,
+                filter: `blur(${blur}px)`,
+                transition: "opacity 0.4s ease-out",
+              }}
+            />
+          );
+        })}
         
-        return (
-          <div
-            key={point.id}
-            className="absolute rounded-full bg-primary blur-sm"
-            style={{
-              left: point.x,
-              top: point.y,
-              width: "20px",
-              height: "20px",
-              transform: `translate(-50%, -50%) scale(${scale})`,
-              opacity: opacity * 0.5,
-              boxShadow: `0 0 ${20 + opacity * 20}px hsl(var(--primary))`,
-              transition: "opacity 0.3s ease-out",
-            }}
-          />
-        );
-      })}
-      
-      {/* Main cursor glow */}
-      <div
-        className="absolute rounded-full bg-primary/50 blur-md"
-        style={{
-          left: mousePos.x,
-          top: mousePos.y,
-          width: "30px",
-          height: "30px",
-          transform: "translate(-50%, -50%)",
-          boxShadow: "0 0 40px hsl(var(--primary))",
-        }}
-      />
+        {/* Main cursor - bigger black circle */}
+        <div
+          className="absolute rounded-full bg-black border-2 border-black/50"
+          style={{
+            left: mousePos.x,
+            top: mousePos.y,
+            width: "40px",
+            height: "40px",
+            transform: "translate(-50%, -50%)",
+            boxShadow: "0 0 20px rgba(0, 0, 0, 0.3)",
+          }}
+        />
       
       {/* Click animations */}
       {clickAnimations.map((anim) => (
@@ -146,22 +165,8 @@ const MouseTrail = () => {
           />
         </div>
       ))}
-      
-      <style>{`
-        @keyframes expandVertical {
-          0% { height: 0px; }
-          100% { height: 300px; opacity: 0; }
-        }
-        @keyframes expandHorizontal {
-          0% { width: 0px; }
-          100% { width: 300px; opacity: 0; }
-        }
-        @keyframes fadeOut {
-          0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-          100% { opacity: 0; transform: translate(-50%, -50%) scale(2); }
-        }
-      `}</style>
-    </div>
+      </div>
+    </>
   );
 };
 
