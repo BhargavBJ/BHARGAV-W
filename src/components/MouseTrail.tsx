@@ -97,40 +97,40 @@ const MouseTrail = () => {
         }
       `}</style>
       <div className="fixed inset-0 pointer-events-none z-50">
-        {/* Smoke trail effect */}
+        {/* White smoke trail effect */}
         {trailPoints.map((point, index) => {
           const opacity = (index + 1) / trailPoints.length;
-          const scale = 0.2 + (opacity * 0.4);
-          const blur = 15 + (1 - opacity) * 10;
+          const scale = 0.3 + (1 - opacity) * 1.2;
+          const blur = 8 + (1 - opacity) * 20;
           
           return (
             <div
               key={point.id}
-              className="absolute rounded-full bg-black/40"
+              className="absolute rounded-full bg-white"
               style={{
                 left: point.x,
                 top: point.y,
-                width: `${15 + Math.random() * 10}px`,
-                height: `${15 + Math.random() * 10}px`,
+                width: `${20 + Math.random() * 15}px`,
+                height: `${20 + Math.random() * 15}px`,
                 transform: `translate(-50%, -50%) scale(${scale})`,
-                opacity: opacity * 0.3,
+                opacity: opacity * 0.25,
                 filter: `blur(${blur}px)`,
-                transition: "opacity 0.4s ease-out",
+                transition: "opacity 0.5s ease-out, transform 0.5s ease-out",
               }}
             />
           );
         })}
         
-        {/* Main cursor - bigger black circle */}
+        {/* Main cursor - black circle */}
         <div
           className="absolute rounded-full bg-black border-2 border-black/50"
           style={{
             left: mousePos.x,
             top: mousePos.y,
-            width: "40px",
-            height: "40px",
+            width: "32px",
+            height: "32px",
             transform: "translate(-50%, -50%)",
-            boxShadow: "0 0 20px rgba(0, 0, 0, 0.3)",
+            boxShadow: "0 0 15px rgba(0, 0, 0, 0.3)",
           }}
         />
       
