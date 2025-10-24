@@ -130,16 +130,16 @@ const MouseTrail = () => {
           );
         })}
         
-        {/* Main cursor - black circle */}
+        {/* Main cursor - bright red circle */}
         <div
-          className="absolute rounded-full bg-black border-2 border-black/50"
+          className="absolute rounded-full bg-primary border-2 border-primary/70"
           style={{
             left: mousePos.x,
             top: mousePos.y,
             width: "32px",
             height: "32px",
             transform: "translate(-50%, -50%)",
-            boxShadow: "0 0 15px rgba(0, 0, 0, 0.3)",
+            boxShadow: "0 0 20px hsl(var(--primary) / 0.6), 0 0 40px hsl(var(--primary) / 0.3)",
           }}
         />
       
